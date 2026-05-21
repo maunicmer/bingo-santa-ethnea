@@ -1,7 +1,12 @@
 # HTTP-only config — used ONLY during initial cert acquisition
+limit_req_zone $binary_remote_addr zone=general:10m rate=10r/s;
+
 server {
     listen 80;
     server_name _;
+    server_tokens off;
+
+    limit_req zone=general burst=20 nodelay;
 
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;
