@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { CurrentNumberBadge } from './CurrentNumberBadge';
+import { GameState } from '../types/game';
 import { useBingoStore } from '../stores/gameStore';
 
 vi.mock('../stores/gameStore', () => ({
@@ -15,7 +16,7 @@ beforeEach(() => {
 
 describe('CurrentNumberBadge', () => {
   it('renders placeholder when currentNumber is null', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ currentNumber: null, drawPhase: 'idle' })
     );
 
@@ -27,7 +28,7 @@ describe('CurrentNumberBadge', () => {
 
   it('renders the current number when revealed', () => {
     const number = 42;
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ currentNumber: number, drawPhase: 'revealed' })
     );
 
@@ -38,7 +39,7 @@ describe('CurrentNumberBadge', () => {
   });
 
   it('uses bingo-red bg for revealed state', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ currentNumber: 7, drawPhase: 'revealed' })
     );
 
@@ -49,7 +50,7 @@ describe('CurrentNumberBadge', () => {
   });
 
   it('has subtle pulse animation (animate-pulse class present)', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ currentNumber: 7, drawPhase: 'revealed' })
     );
 
@@ -60,7 +61,7 @@ describe('CurrentNumberBadge', () => {
   });
 
   it('does NOT have spin-related classes or animations', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ currentNumber: 7, drawPhase: 'revealed' })
     );
 

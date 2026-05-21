@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Board } from './Board';
+import { GameState } from '../types/game';
 import { useBingoStore } from '../stores/gameStore';
 
 vi.mock('../stores/gameStore', () => ({
@@ -15,7 +16,7 @@ beforeEach(() => {
 
 describe('Board', () => {
   it('renders 75 number cells (1-75)', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers: [], currentNumber: null })
     );
 
@@ -28,7 +29,7 @@ describe('Board', () => {
 
   it('highlights drawn numbers with green styling', () => {
     const drawnNumbers = [5, 10, 15];
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers, currentNumber: null })
     );
 
@@ -43,7 +44,7 @@ describe('Board', () => {
   it('highlights current number with red styling and pulse animation', () => {
     const drawnNumbers = [5, 10];
     const currentNumber = 15;
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers, currentNumber })
     );
 
@@ -57,7 +58,7 @@ describe('Board', () => {
 
   it('undrawn numbers have default styling', () => {
     const drawnNumbers = [1];
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers, currentNumber: null })
     );
 
@@ -68,7 +69,7 @@ describe('Board', () => {
   });
 
   it('renders cells with fluid sizing (aspect-square + w-full)', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers: [], currentNumber: null })
     );
 
@@ -80,7 +81,7 @@ describe('Board', () => {
   });
 
   it('renders cells with responsive font sizes', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers: [], currentNumber: null })
     );
 

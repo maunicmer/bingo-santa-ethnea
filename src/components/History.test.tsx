@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { History } from './History';
+import { GameState } from '../types/game';
 import { useBingoStore } from '../stores/gameStore';
 
 vi.mock('../stores/gameStore', () => ({
@@ -15,7 +16,7 @@ beforeEach(() => {
 
 describe('History', () => {
   it('shows "Aún no salió ningún número" when drawnNumbers is empty', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers: [] })
     );
 
@@ -26,7 +27,7 @@ describe('History', () => {
 
   it('shows last 10 drawn numbers in reverse order (most recent first)', () => {
     const drawnNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers })
     );
 
@@ -44,7 +45,7 @@ describe('History', () => {
 
   it('shows all numbers when fewer than 10 drawn', () => {
     const drawnNumbers = [5, 10, 15];
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers })
     );
 
@@ -60,7 +61,7 @@ describe('History', () => {
 
   it('renders numbers in a horizontal strip without heading', () => {
     const drawnNumbers = [1, 2, 3, 4, 5];
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers })
     );
 
@@ -75,7 +76,7 @@ describe('History', () => {
 
   it('highlights the most recent number with red styling', () => {
     const drawnNumbers = [5, 10, 15];
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers })
     );
 
@@ -86,7 +87,7 @@ describe('History', () => {
   });
 
   it('renders history as a thin strip with minimal height', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers: [1, 2, 3] })
     );
 
@@ -99,7 +100,7 @@ describe('History', () => {
   });
 
   it('renders history badges with smaller sizing than board cells', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers: [1, 2, 3] })
     );
 
@@ -117,7 +118,7 @@ describe('History', () => {
   });
 
   it('does not render a heading in the history strip', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector({ drawnNumbers: [1, 2, 3, 4, 5] })
     );
 

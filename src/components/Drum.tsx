@@ -4,7 +4,7 @@ import { useBingoStore } from '../stores/gameStore';
 // Web Audio API - sonidos sintéticos, sin archivos externos
 const playDrumSound = () => {
   try {
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContext = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (!AudioContext) return;
     const ctx = new AudioContext();
     
@@ -35,7 +35,7 @@ const playDrumSound = () => {
 
 const playBellSound = () => {
   try {
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    const AudioContext = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     if (!AudioContext) return;
     const ctx = new AudioContext();
     

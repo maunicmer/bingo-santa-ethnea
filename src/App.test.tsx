@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { GameState } from './types/game';
 import { useBingoStore } from './stores/gameStore';
 
 vi.mock('./stores/gameStore', () => ({
@@ -26,7 +27,7 @@ describe('App', () => {
   });
 
   it('renders the app header with title', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector(createMockState())
     );
 
@@ -36,7 +37,7 @@ describe('App', () => {
   });
 
   it('uses vertical stack layout (flex-col)', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector(createMockState())
     );
 
@@ -48,7 +49,7 @@ describe('App', () => {
   });
 
   it('renders Board as the primary element', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector(createMockState())
     );
 
@@ -62,7 +63,7 @@ describe('App', () => {
   });
 
   it('renders CurrentNumberBadge component', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector(createMockState())
     );
 
@@ -73,7 +74,7 @@ describe('App', () => {
   });
 
   it('renders Controls component with action buttons', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector(createMockState())
     );
 
@@ -84,7 +85,7 @@ describe('App', () => {
   });
 
   it('renders History component with empty state', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector(createMockState())
     );
 
@@ -94,7 +95,7 @@ describe('App', () => {
   });
 
   it('renders components in correct vertical order: Board → Badge → Controls → History', () => {
-    mockStore.mockImplementation((selector: (s: any) => any) =>
+    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
       selector(createMockState())
     );
 
