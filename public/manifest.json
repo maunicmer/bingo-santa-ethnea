@@ -1,0 +1,22 @@
+{
+  "name": "Bingo Santa Ethnea",
+  "short_name": "Santa Ethnea",
+  "description": "Bingo del colegio Santa Ethnea, funciona sin internet",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1d3557",
+  "theme_color": "#1d3557",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
