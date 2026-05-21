@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 export type DrawPhase = 'idle' | 'spinning' | 'revealing' | 'revealed';
 
-interface BingoState {
+export interface BingoState {
   availableNumbers: number[];
   drawnNumbers: number[];
   currentNumber: number | null;

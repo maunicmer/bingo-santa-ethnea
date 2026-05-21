@@ -4,9 +4,10 @@ import { useBingoStore } from '../stores/gameStore';
 // Web Audio API - sonidos sintéticos, sin archivos externos
 const playDrumSound = () => {
   try {
-    const AudioContext = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    if (!AudioContext) return;
-    const ctx = new AudioContext();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
     
     // Ruido de bolas moviéndose
     const bufferSize = ctx.sampleRate * 1.0;
@@ -35,9 +36,10 @@ const playDrumSound = () => {
 
 const playBellSound = () => {
   try {
-    const AudioContext = window.AudioContext || (window as typeof window & { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    if (!AudioContext) return;
-    const ctx = new AudioContext();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
     
     // Campana tipo "ding"
     const osc = ctx.createOscillator();

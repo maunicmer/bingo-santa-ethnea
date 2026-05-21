@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { CurrentNumberBadge } from './CurrentNumberBadge';
-import { GameState } from '../types/game';
+import type { BingoState } from '../stores/gameStore';
 import { useBingoStore } from '../stores/gameStore';
 
 vi.mock('../stores/gameStore', () => ({
@@ -16,8 +16,8 @@ beforeEach(() => {
 
 describe('CurrentNumberBadge', () => {
   it('renders placeholder when currentNumber is null', () => {
-    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
-      selector({ currentNumber: null, drawPhase: 'idle' })
+    mockStore.mockImplementation((selector: (s: BingoState) => unknown) =>
+      selector({ currentNumber: null, drawPhase: 'idle' } as unknown as BingoState)
     );
 
     render(<CurrentNumberBadge />);
@@ -28,8 +28,8 @@ describe('CurrentNumberBadge', () => {
 
   it('renders the current number when revealed', () => {
     const number = 42;
-    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
-      selector({ currentNumber: number, drawPhase: 'revealed' })
+    mockStore.mockImplementation((selector: (s: BingoState) => unknown) =>
+      selector({ currentNumber: number, drawPhase: 'revealed' } as unknown as BingoState)
     );
 
     render(<CurrentNumberBadge />);
@@ -39,8 +39,8 @@ describe('CurrentNumberBadge', () => {
   });
 
   it('uses bingo-red bg for revealed state', () => {
-    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
-      selector({ currentNumber: 7, drawPhase: 'revealed' })
+    mockStore.mockImplementation((selector: (s: BingoState) => unknown) =>
+      selector({ currentNumber: 7, drawPhase: 'revealed' } as unknown as BingoState)
     );
 
     render(<CurrentNumberBadge />);
@@ -50,8 +50,8 @@ describe('CurrentNumberBadge', () => {
   });
 
   it('has subtle pulse animation (animate-pulse class present)', () => {
-    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
-      selector({ currentNumber: 7, drawPhase: 'revealed' })
+    mockStore.mockImplementation((selector: (s: BingoState) => unknown) =>
+      selector({ currentNumber: 7, drawPhase: 'revealed' } as unknown as BingoState)
     );
 
     render(<CurrentNumberBadge />);
@@ -61,8 +61,8 @@ describe('CurrentNumberBadge', () => {
   });
 
   it('does NOT have spin-related classes or animations', () => {
-    mockStore.mockImplementation((selector: (s: Partial<GameState>) => unknown) =>
-      selector({ currentNumber: 7, drawPhase: 'revealed' })
+    mockStore.mockImplementation((selector: (s: BingoState) => unknown) =>
+      selector({ currentNumber: 7, drawPhase: 'revealed' } as unknown as BingoState)
     );
 
     render(<CurrentNumberBadge />);
