@@ -10,7 +10,6 @@ export interface BingoState {
   drawPhase: DrawPhase;
   
   startDraw: () => void;
-  revealNumber: () => void;
   resetGame: () => void;
 }
 
@@ -66,10 +65,6 @@ export const useBingoStore = create<BingoState>((set, get) => ({
         });
       }, 800);
     }, 1000);
-  },
-
-  revealNumber: () => {
-    // No-op, la revelación es automática por timer
   },
 
   resetGame: () => {
